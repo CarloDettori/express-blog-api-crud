@@ -6,13 +6,15 @@ const router = express.Router();
 
 //read:  visualizzazione tutti elementi (index)
 function index(req, res) {
-    res.send("lista dei post")
+    const allPosts = [...posts]
+    res.json(allPosts)
+
 };
 
 //read:  visualizzazione 1 elemento (show)
 function show(req, res) {
     const id = parseInt(req.params.id);
-    const onePost = posts.find((item) => item.id === id);
+    const onePost = posts.find((element) => element.id === id);
     if (onePost) {
         res.json({
             success: true,
@@ -44,7 +46,24 @@ function modify(req, res) {
 
 //delete:  eliminazione 1 elemento (destroy)
 function destroy(req, res) {
-    res.send("eliminazione 1 post")
+    const id = parseInt(req.params.id);
+    const onePost = posts.find((element) => element.id === id);
+    if (onePost) {
+        posts[id] = {
+            deleteSuccess: true,
+            error: "204",
+            message: "post eliminato con successo",
+        }
+        res.json(posts)
+
+    } else {
+        res.status(404);
+        res.json({
+            success: false,
+            error: "404",
+            message: "il post non esiste",
+        });
+    };
 };
 
 module.exports = {
