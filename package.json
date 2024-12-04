@@ -1,0 +1,17 @@
+{
+  "name": "express-blog-intro",
+  "version": "1.0.0",
+  "description": "First-Blog",
+  "entry point": "(index.js) server.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "node --watch app.js"
+  },
+  "author": "Carlo",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.1"
+  }
+}
