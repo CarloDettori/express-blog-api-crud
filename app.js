@@ -14,7 +14,7 @@ app.get("/", (req, res) => {
 app.get("/bacheca", (req, res) => {
     let postTitles = ""
     posts.slice(1).forEach(element => {
-        postTitles += (" " + element.title)
+        postTitles += (" " + element.id)
     });
     let counter = posts[0].conteggio
     let postArchive = {
