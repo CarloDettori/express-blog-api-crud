@@ -7,7 +7,7 @@ router.get("/:tag", tagFilter);
 //read:  visualizzazione 1 elemento (show)
 function tagFilter(req, res) {
     const choosenTag = tag;
-    const taggedPost = posts.filter((element) => element.tags.includes(tag);
+    const taggedPost = posts.filter((element) => element.tags.includes(tag));
     if (onePost.length == 0) {
         res.json(taggedPost);
     } else {

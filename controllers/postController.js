@@ -31,7 +31,25 @@ function show(req, res) {
 
 //create:  creazione 1 elemento (store)
 function store(req, res) {
-    res.send("creazione 1 post")
+    let newId = 0;
+    for (let i = 0; i < posts.length; i++) {
+        if (posts[i].id > newId) {
+            newId = posts[i].id;
+        }
+    }
+    newId += 1;
+
+    //console.log(req.headers["content-type"]);
+    const newPost = {
+        id: newId,
+        title: req.body.title,
+        content: req.body.content,
+        image: req.body.image,
+        tags: req.body.tags,
+    };
+
+    posts.push(newPost);
+    res.status(201).json(newPost);
 };
 
 //update:  modifica interamente 1 elemento (update)
