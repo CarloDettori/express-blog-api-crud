@@ -8,7 +8,6 @@ const router = express.Router();
 function index(req, res) {
     const allPosts = [...posts]
     res.json(allPosts)
-
 };
 
 //read:  visualizzazione 1 elemento (show)
@@ -38,8 +37,6 @@ function store(req, res) {
         }
     }
     newId += 1;
-
-    //console.log(req.headers["content-type"]);
     const newPost = {
         id: newId,
         title: req.body.title,
@@ -47,14 +44,28 @@ function store(req, res) {
         image: req.body.image,
         tags: req.body.tags,
     };
-
     posts.push(newPost);
     res.status(201).json(newPost);
 };
 
 //update:  modifica interamente 1 elemento (update)
 function update(req, res) {
-    res.send("modifica interamente 1 post")
+    const id = parseInt(req.params.id);
+    const item = posts.find((element) => element.id === id);
+    if (!item) {
+        res.status(404).json({
+            success: false, message: "il post non esiste"
+        });
+        return;
+    }
+    console.log(req.body);
+    for (let i in item) {
+        if (i !== "id") {
+            item[i] = req.body[i];
+        }
+    }
+    console.log(posts);
+    res.json(item);
 };
 
 //update:  modifica parzialmente 1 elemento (modify)
