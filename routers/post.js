@@ -11,7 +11,7 @@ const {
     update,
     modify,
     destroy,
-} = require("../controllers/postController")
+} = require("../controllers/postController");
 
 //read:  visualizzazione tutti elementi (index)
 router.get("/", index);

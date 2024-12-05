@@ -4,6 +4,7 @@ const express = require("express");
 const posts = require("../data/post");
 const router = express.Router();
 
+
 //read:  visualizzazione tutti elementi (index)
 function index(req, res) {
     const allPosts = [...posts]

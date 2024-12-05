@@ -4,6 +4,9 @@ const app = express();
 const PORT = 3000;
 const postsRouter = require('./routers/post');
 const posts = require("./data/post")
+const bodyParser = require('body-parser')
+
+app.use(bodyParser.json());
 
 app.use(express.static("public"));
 
