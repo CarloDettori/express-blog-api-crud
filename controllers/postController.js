@@ -71,7 +71,22 @@ function update(req, res) {
 
 //update:  modifica parzialmente 1 elemento (modify)
 function modify(req, res) {
-    res.send("modifica parzialmente 1 post")
+    const id = parseInt(req.params.id);
+    const item = posts.find((element) => element.id === id);
+    if (!item) {
+        res.status(404).json({
+            success: false, message: "il post non esiste"
+        });
+        return;
+    }
+    console.log(req.body);
+    for (let i in item) {
+        if (i !== "id") {
+            item[i] = req.body[i];
+        }
+    }
+    console.log(posts);
+    res.json(item);
 };
 
 //delete:  eliminazione 1 elemento (destroy)
